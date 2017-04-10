@@ -1,23 +1,23 @@
 Gem::Specification.new do |s|
   s.platform     = Gem::Platform::RUBY
-  s.name         = 'spree_digital'
-  s.version      = '3.2.0.alpha'
+  s.name         = 'solidus_digital'
+  s.version      = '0.1'
   s.summary      = ''
-  s.description  = 'Digital download functionality for spree'
-  s.authors      = ['funkensturm', 'Michael Bianco']
-  s.email        = ['info@cliffsidedev.com']
-  s.homepage     = 'http://www.funkensturm.com'
+  s.description  = 'Digital download functionality for solidus'
+  s.authors      = ['taktsoft', 'A. Trakowski']
+  s.email        = ['trakowski@taktsoft.com']
+  s.homepage     = 'https://www.taktsoft.com'
   s.files        = `git ls-files`.split("\n")
   s.test_files   = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_path = 'lib'
   s.requirements << 'none'
   s.required_ruby_version = '>= 2.1.0'
 
-  spree_version = '>= 3.1.0', '< 4.0'
-  s.add_dependency 'spree_api', spree_version
-  s.add_dependency 'spree_backend', spree_version
-  s.add_dependency 'spree_core', spree_version
-  s.add_dependency 'spree_frontend'
+  solidus_version = '>= 2.1.0', '< 3.0'
+  s.add_dependency 'solidus_api', solidus_version
+  s.add_dependency 'solidus_backend', solidus_version
+  s.add_dependency 'solidus_core', solidus_version
+  s.add_dependency 'solidus_frontend'
 
   # test suite
   s.add_development_dependency 'shoulda-matchers'
@@ -31,10 +31,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'guard-rspec'
   s.add_development_dependency 'rb-fsevent'
   s.add_development_dependency 'growl'
-  s.add_development_dependency 'appraisal'
   s.add_development_dependency 'pg'
   s.add_development_dependency 'mysql2'
 end

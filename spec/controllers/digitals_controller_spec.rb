@@ -16,7 +16,7 @@ RSpec.describe Spree::DigitalsController, :type => :controller do
       expect(controller).not_to receive(:send_file)
       spree_get :show, secret: authorized_digital_link.secret
       expect(response.status).to eq(200)
-      expect(response).to render_template(:unauthorized)
+      expect(response).to render_template('unauthorized')
     end
 
     it 'returns a 200 and calls send_file for an authorized link that is a file' do

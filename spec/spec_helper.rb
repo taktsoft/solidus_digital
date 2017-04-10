@@ -19,6 +19,7 @@ require 'rspec/active_model/mocks'
 require 'database_cleaner'
 require 'ffaker'
 require 'shoulda-matchers'
+require 'rails-controller-testing'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
