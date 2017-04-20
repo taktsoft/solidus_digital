@@ -8,7 +8,7 @@ NOTE: Forked after commit f1d74127a95805e25a1f4edeeba6cb520a3b9746 in `spree_dig
 
 ## TODOs
 
-* [ ] Fix partial in `admin/products`
+* [x] Fix admin digitals index partial (do not render `product_sub_menu` unnecessarily)
 * [ ] Improve digitals file path (use `private/system/digitals`)
 * [ ] Fill missing specs (marked with `FIXME`)
 * [ ] Translate `views/spree/admin/digitals/index.html.erb` and `views/spree/order_mailer/confirm_email.text.erb`
