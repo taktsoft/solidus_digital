@@ -26,8 +26,8 @@ RSpec.describe Spree::LineItem do
       links.each { |link| expect(link.line_item).to eq(line_item) }
     end
 
-    it "should create a link for digital variants with multiple digital downloads attached" do
-
+    xit "should create a link for digital variants with multiple digital downloads attached" do
+      # FIXME
     end
   end
 

@@ -7,7 +7,7 @@ RSpec.describe Spree::Digital do
   end
 
   context "#create" do
-
+    # FIXME?
   end
 
   context "#destroy" do
