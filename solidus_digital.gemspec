@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.platform     = Gem::Platform::RUBY
   s.name         = 'solidus_digital'
-  s.version      = '0.1'
-  s.summary      = ''
+  s.version      = '0.0.1'
+  s.summary      = 'Digital download functionality for solidus'
   s.description  = 'Digital download functionality for solidus'
   s.authors      = ['taktsoft', 'A. Trakowski']
   s.email        = ['trakowski@taktsoft.com']
