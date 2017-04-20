@@ -26,8 +26,17 @@ RSpec.describe Spree::LineItem do
       links.each { |link| expect(link.line_item).to eq(line_item) }
     end
 
-    xit "should create a link for digital variants with multiple digital downloads attached" do
-      # FIXME
+    it "should create a link for each digital of a digital Variant" do
+      digital_variant = create(:variant, digitals: create_list(:digital, 3))
+      line_item = build(:line_item, variant: digital_variant, quantity: 2)
+
+      expect do
+        line_item.save
+      end.to change(Spree::DigitalLink, :count).by(+6)
+
+      links = Spree::DigitalLink.last(6)
+      expect(links.map(&:line_item_id)).to all(eql(line_item.id))
+      expect(links.map(&:digital_id)).to match_array(line_item.variant.digitals.map(&:id) * 2)
     end
   end
 
