@@ -2,9 +2,10 @@
 
 Port of [spree_digital](https://github.com/spree-contrib/spree_digital/) to [solidus](https://github.com/solidusio/solidus/).
 
-For information on installation and use of this extension: see original `spree_digital` README!
-
-NOTE: Forked after commit f1d74127a95805e25a1f4edeeba6cb520a3b9746 in `spree_digital`.
+* Solidus version >= 2.0.0 for Rails 5 compatibility.
+* NOTE: Order confirmation emails need to be customised to include download links. This version of the gem overrides the whole text confirmation_email, but is not completely translated. So for now, if you want to include download links in the confirmation email and use the plain text emails, you may have to override that yourself. If you want to include download links in a HTML confirmation email, you have to set that up yourself.
+* For more information on installation and use of this extension: see original `spree_digital` README!
+* Forked after commit f1d74127a95805e25a1f4edeeba6cb520a3b9746 in `spree_digital`.
 
 ## Changes
 
