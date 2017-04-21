@@ -9,10 +9,12 @@ Port of [spree_digital](https://github.com/spree-contrib/spree_digital/) to [sol
 
 ## Changes
 
-* [x] Port of `spree_digital` to Solidus, so that `solidus_digital` can be installed in a Rails 5 app with Solidus 2.1.0
-* [x] Fix admin digitals index partial (do not render `product_sub_menu` unnecessarily)
-* [x] Improve digitals file path: use `private/system/digitals` considering standard Capistrano deployments
-* [x] Only create digital_links once an order is complete! (i.e. once the order has passed the checkout process)
+### solidus_digital, version 1.0.0
+
+* Port of `spree_digital` to Solidus, so that `solidus_digital` can be installed in a Rails 5 app with Solidus 2.1.0
+* Fix admin digitals index partial (do not render `product_sub_menu` unnecessarily)
+* Improve digitals file path: use `private/system/digitals` considering standard Capistrano deployments
+* Only create digital_links once an order is complete! (i.e. once the order has passed the checkout process)
 
 ## Nice to have
 
