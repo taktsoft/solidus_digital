@@ -12,7 +12,6 @@ Spree::LineItem.class_eval do
     variant.digital? && order.complete?
   end
 
-  # TODO there is no reason to create the digital links until the order is complete
   # TODO: PMG - Shouldn't we only do this if the quantity changed?
   def create_digital_links
     digital_links.delete_all

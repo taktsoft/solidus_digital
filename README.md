@@ -1,6 +1,6 @@
 # Solidus digital
 
-Port [spree_digital](https://github.com/spree-contrib/spree_digital/) to [solidus](https://github.com/solidusio/solidus/).
+Port of [spree_digital](https://github.com/spree-contrib/spree_digital/) to [solidus](https://github.com/solidusio/solidus/).
 
 For information on installation and use of this extension: see original `spree_digital` README!
 
