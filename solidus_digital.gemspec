@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
   s.required_ruby_version = '>= 2.1.0'
 
-  solidus_version = '>= 2.1.0', '< 3.0'
+  solidus_version = '>= 2.0.0', '< 3.0'
   s.add_dependency 'solidus_api', solidus_version
   s.add_dependency 'solidus_backend', solidus_version
   s.add_dependency 'solidus_core', solidus_version
