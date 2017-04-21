@@ -3,7 +3,8 @@ module Spree
     belongs_to :variant
     has_many :digital_links, dependent: :destroy
 
-    has_attached_file :attachment, path: ":rails_root/private/digitals/:id/:basename.:extension"
+    # use a directory which can be symlinked to the app's shared directory and therefore survive standard Capistrano deployments
+    has_attached_file :attachment, path: ":rails_root/private/system/digitals/:id/:basename.:extension"
     do_not_validate_attachment_file_type :attachment
     validates_attachment_presence :attachment
 

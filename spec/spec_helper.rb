@@ -19,6 +19,8 @@ require 'rspec/active_model/mocks'
 require 'database_cleaner'
 require 'ffaker'
 require 'shoulda-matchers'
+require "paperclip/matchers"
+require 'rails-controller-testing'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -37,7 +39,6 @@ require 'spree/testing_support/authorization_helpers'
 Dir[File.join(File.dirname(__FILE__), "factories/*.rb")].each {|f| require f }
 
 RSpec.configure do |config|
-
   config.color = true
   config.disable_monkey_patching!
   config.raise_errors_for_deprecations!
@@ -49,6 +50,9 @@ RSpec.configure do |config|
   config.include Spree::TestingSupport::ControllerRequests, :type => :controller
   config.extend Spree::TestingSupport::AuthorizationHelpers::Controller, :type => :controller
   config.include SpreeDigital::TestingSupport::Helpers, :type => :controller
+
+  config.include Paperclip::Shoulda::Matchers
+
   config.use_transactional_fixtures = false
 
   config.before(:each) do

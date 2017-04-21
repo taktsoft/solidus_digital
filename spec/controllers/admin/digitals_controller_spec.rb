@@ -15,13 +15,14 @@ RSpec.describe Spree::Admin::DigitalsController do
       end
       let(:variants_without_digitals) { 3.times.map { create(:variant, product: product) } }
 
-      it "should display an empty page when no digitals exist" do
+      xit "should display an empty page when no digitals exist" do
         variants_without_digitals
         spree_get :index, product_id: product.slug
+        # FIXME
       end
 
-      it "should display list of digitals when they exist" do
-
+      xit "should display list of digitals when they exist" do
+        # FIXME
       end
     end
 
