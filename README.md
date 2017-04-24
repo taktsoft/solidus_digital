@@ -9,6 +9,10 @@ Port of [spree_digital](https://github.com/spree-contrib/spree_digital/) to [sol
 
 ## Changes
 
+### solidus_digital, version 1.0.1
+
+* Fix digital_link creation!
+
 ### solidus_digital, version 1.0.0
 
 * Port of `spree_digital` to Solidus, so that `solidus_digital` can be installed in a Rails 5 app with Solidus 2.1.0
