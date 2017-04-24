@@ -1,20 +1,14 @@
 Spree::LineItem.class_eval do
   has_many :digital_links, :dependent => :destroy
-  after_save :create_digital_links, :if => :variant_digital_and_order_complete?
 
   delegate :digital?, to: :variant, prefix: false
-  delegate :complete?, to: :order, prefix: true
-
-
-  private
-
-  def variant_digital_and_order_complete?
-    variant.digital? && order.complete?
-  end
 
   # TODO: PMG - Shouldn't we only do this if the quantity changed?
   def create_digital_links
-    digital_links.delete_all
+    raise "Missing line_item id!" unless persisted?
+    raise "Unpersisted line_item changes!" if changes.present?
+    raise "Order not complete!" unless order.complete?
+    raise "Digital links already present!" if digital_links.present?
 
     #include master variant digitals
     master = variant.product.master
@@ -23,6 +17,8 @@ Spree::LineItem.class_eval do
     end
     create_digital_links_for_variant(variant) unless variant.is_master
   end
+
+  private
 
   def create_digital_links_for_variant(variant)
     variant.digitals.each do |digital|

@@ -173,4 +173,75 @@ RSpec.describe Spree::Order do
       order.reset_digital_links!
     end
   end
+
+  describe "after save" do
+    context "when complete" do
+      subject(:complete_order) { create(:order, state: 'complete') }
+      let(:digital_variants) { create_list(:variant, 2, digitals: create_list(:digital, 1)) }
+      let(:other_variant) { create(:variant) }
+      let(:digital_line_item1) { build(:line_item, variant: digital_variants.first, quantity: 4) }
+      let(:digital_line_item2) { build(:line_item, variant: digital_variants.second, quantity: 1) }
+      let(:other_line_item) { build(:line_item, variant: other_variant, quantity: 3) }
+
+      before(:each) do
+        complete_order.line_items << digital_line_item1
+        complete_order.line_items << digital_line_item2
+        complete_order.line_items << other_line_item
+      end
+
+      it "creates digital_links for digital_items when missing" do
+        expect(digital_line_item1).to receive(:create_digital_links).and_call_original
+        expect(digital_line_item2).to receive(:create_digital_links).and_call_original
+        expect(other_line_item).not_to receive(:create_digital_links)
+
+        expect do
+          complete_order.save!
+        end.to change(Spree::DigitalLink, :count).by(+5)
+      end
+
+      it "recreates digital_links for digital_items when quantity has changed" do
+        # create digital_links initially
+        complete_order.save!
+
+        complete_order.digital_line_items.second.update!(quantity: 3)
+
+        expect(digital_line_item2).to receive(:create_digital_links).and_call_original
+        expect(digital_line_item1).not_to receive(:create_digital_links)
+        expect(other_line_item).not_to receive(:create_digital_links)
+
+        expect do
+          complete_order.save!
+        end.to change(Spree::DigitalLink, :count).by(+2) # 3 - 1
+      end
+
+      it "does not change digital_links when correct amount of digital_links already exists" do
+        # create digital_links initially
+        complete_order.save!
+
+        expect(digital_line_item1).not_to receive(:create_digital_links)
+        expect(digital_line_item2).not_to receive(:create_digital_links)
+        expect(other_line_item).not_to receive(:create_digital_links)
+
+        expect do
+          complete_order.save!
+        end.not_to change(Spree::DigitalLink, :count)
+      end
+    end
+
+    context "when incomplete" do
+      let(:other_order_states) { Spree::Order.state_machine.states.keys.without(:complete) }
+      let(:digital_variants) { create_list(:variant, 2, digitals: create_list(:digital, 1)) }
+      subject(:incomplete_order) { create(:order, state: other_order_states.sample) }
+
+      it "does not create digital_links for digital line_items" do
+        incomplete_order.line_items << create(:line_item, variant: digital_variants.first)
+        incomplete_order.line_items << create(:line_item, variant: digital_variants.second)
+        expect(incomplete_order.digital_line_items.count).to eql(2)
+
+        expect do
+          incomplete_order.save!
+        end.not_to change(Spree::DigitalLink, :count)
+      end
+    end
+  end
 end
